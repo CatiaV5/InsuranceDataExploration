@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Jupyter
+*.ipynb_checkpoints
+
+# Virtual environments
+venv/
+.env
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Data
+#*.csv
+#*.arff
+#*.xlsx
+*.h5
+*.pkl
+
+# Models
+*.h5
+*.pt
+*.sav
+
+# VSCode or PyCharm
+.idea/
+.vscode/
