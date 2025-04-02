@@ -1,6 +1,5 @@
 from preprocessor import InsurancePreprocessor
-from Archive.training import InsuranceModelTrainer
-
+from training_nn import InsuranceModelTrainer
 
 if __name__ == "__main__":
 

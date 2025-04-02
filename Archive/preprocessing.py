@@ -94,7 +94,7 @@ df_sev = load_arff_file("../Data/freMTPL2sev.arff", custom_columns=sev_cols)
 
 # 1) Prepare and merge
 df_combined = prepare_data_for_modeling(df_freq, df_sev)
-plot_and_save_correlation_matrix(df_combined, filename="../correlation_matrix_combined.png")
+plot_and_save_correlation_matrix(df_combined, filename="../Images/correlation_matrix_combined.png")
 
 # 2) Decide which columns are categorical
 categorical_cols = ["Area", "VehBrand", "VehGas", "Region"]
