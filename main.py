@@ -1,9 +1,11 @@
 from preprocessor import InsurancePreprocessor
-from training import InsuranceModelTrainer
+from Archive.training import InsuranceModelTrainer
+
 
 if __name__ == "__main__":
-    # Define column lists (same as before).
-    print("RUNNING")
+
+    print("Running..........................")
+    # Define column lists.
     freq_cols = [
         "IDpol", "ClaimNb", "Exposure", "Area", "VehPower",
         "VehAge", "DrivAge", "BonusMalus", "VehBrand",
@@ -27,5 +29,5 @@ if __name__ == "__main__":
     # Initialize the model trainer with the preprocessor.
     trainer = InsuranceModelTrainer(preprocessor=preprocessor, test_size=0.2, random_state=42)
 
-    # Run training for all models (RF and GLM, on both all and selected features).
+    # Run training for all models (RF, GLM, XGBoost, and Neural Network on both all and selected features).
     trainer.run_training()

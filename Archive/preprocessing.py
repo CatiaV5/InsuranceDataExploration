@@ -86,15 +86,15 @@ freq_cols = [
     "VehGas", "Density", "Region"
 ]
 
-df_freq = load_arff_file("Data/freMTPL2freq.arff", custom_columns=freq_cols)
+df_freq = load_arff_file("../Data/freMTPL2freq.arff", custom_columns=freq_cols)
 sev_cols = ["IDpol", "ClaimAmount"]
-df_sev = load_arff_file("Data/freMTPL2sev.arff", custom_columns=sev_cols)
+df_sev = load_arff_file("../Data/freMTPL2sev.arff", custom_columns=sev_cols)
 
 ###############################################
 
 # 1) Prepare and merge
 df_combined = prepare_data_for_modeling(df_freq, df_sev)
-plot_and_save_correlation_matrix(df_combined, filename="correlation_matrix_combined.png")
+plot_and_save_correlation_matrix(df_combined, filename="../correlation_matrix_combined.png")
 
 # 2) Decide which columns are categorical
 categorical_cols = ["Area", "VehBrand", "VehGas", "Region"]
@@ -120,7 +120,7 @@ plt.title("Cumulative Explained Variance by PCA Components")
 plt.xlabel("Number of Components")
 plt.ylabel("Cumulative Explained Variance")
 plt.grid(True)
-plot_filename = "pca_cumulative_variance.png"
+plot_filename = "../pca_cumulative_variance.png"
 plt.savefig(plot_filename)
 plt.close()
 
@@ -144,7 +144,7 @@ for pc in loadings.columns:
     top_features_per_pc[pc] = top_features
 
 # 4. Save everything to Excel
-output_excel_path = "pca_output_detailed.xlsx"
+output_excel_path = "../pca_output_detailed.xlsx"
 with pd.ExcelWriter(output_excel_path, engine='openpyxl') as writer:
     explained_variance_df.to_excel(writer, sheet_name='ExplainedVariance', index=False)
     loadings.to_excel(writer, sheet_name='PCALoadings')
@@ -244,7 +244,7 @@ plt.title("Cumulative Explained Variance by PCA Components")
 plt.xlabel("Number of Components")
 plt.ylabel("Cumulative Explained Variance")
 plt.grid(True)
-plot_filename = "pca_cumulative_variance.png"
+plot_filename = "../pca_cumulative_variance.png"
 plt.savefig(plot_filename)
 plt.close()
 
@@ -268,7 +268,7 @@ for pc in loadings.columns:
     top_features_per_pc[pc] = top_features
 
 # 4. Save everything to Excel
-output_excel_path = "pca_output_detailed.xlsx"
+output_excel_path = "../pca_output_detailed.xlsx"
 with pd.ExcelWriter(output_excel_path, engine='openpyxl') as writer:
     explained_variance_df.to_excel(writer, sheet_name='ExplainedVariance', index=False)
     loadings.to_excel(writer, sheet_name='PCALoadings')
