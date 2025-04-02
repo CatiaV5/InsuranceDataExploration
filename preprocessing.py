@@ -2,6 +2,40 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import arff
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+def plot_and_save_correlation_matrix(df, columns=None, filename="correlation_matrix.png"):
+    """
+    Computes and plots the Pearson correlation matrix of selected columns in the dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataframe containing your data.
+    columns : list of str or None
+        List of columns to include in the correlation matrix.
+        If None, all numeric columns will be used.
+    filename : str
+        File name to save the plot.
+    """
+    if columns is not None:
+        corr_df = df[columns]
+    else:
+        corr_df = df.select_dtypes(include=np.number)
+
+    corr_matrix = corr_df.corr(method='pearson')
+
+    # Plot the heatmap
+    plt.figure(figsize=(12, 10))
+    sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap='coolwarm', square=True,
+                cbar_kws={"shrink": .8}, linewidths=.5)
+    plt.title("Correlation Matrix", fontsize=14)
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.close()
+    print(f"✅ Correlation matrix saved to: {filename}")
 
 
 def prepare_data_for_modeling(df_freq, df_sev):
@@ -60,6 +94,7 @@ df_sev = load_arff_file("Data/freMTPL2sev.arff", custom_columns=sev_cols)
 
 # 1) Prepare and merge
 df_combined = prepare_data_for_modeling(df_freq, df_sev)
+plot_and_save_correlation_matrix(df_combined, filename="correlation_matrix_combined.png")
 
 # 2) Decide which columns are categorical
 categorical_cols = ["Area", "VehBrand", "VehGas", "Region"]
